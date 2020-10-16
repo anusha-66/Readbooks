@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { FaMagic } from 'react-icons/fa';
 import { isPropertySignature } from "typescript";
 
-const SearchResults = (props: { allAvailableBooks: [] }) => {
+type searchResult = {
+    allAvailableBooks:Array<any>,
+    addToWishList:any,
+    wishList:Array<string>
+}
+const SearchResults = (props:searchResult) => {
 
     console.log(props, "props");
 
@@ -13,7 +18,9 @@ const SearchResults = (props: { allAvailableBooks: [] }) => {
                 {props && props.allAvailableBooks &&
                     props.allAvailableBooks.length > 0 &&
                     props.allAvailableBooks.map((books: any) =>
-                        <div className="books">
+                    {
+                        const isAvailableInwishList = props.wishList.includes(books.id);
+                        return (<div className="books">
                             <div className="books__img">
                                 <img src= {books && books.imageLinks&& books.imageLinks.smallThumbnail}/>
                             </div>
@@ -24,10 +31,15 @@ const SearchResults = (props: { allAvailableBooks: [] }) => {
                                 </div>
                                 <h1 className="books__title">{books.title}</h1>
                                 <div className="books__description">{books.description}</div>
-                                <button className="book__searchbtn">Add to wish list</button>
+                                {isAvailableInwishList?
+                                <button className="book__searchbtn" >Already Available in wish list</button>
+                                :<button className="book__searchbtn" onClick={()=>{props.addToWishList(books.id)}}>Add to wish list</button>
+                                }
                             </div>
                         </div>
-                    )}
+                    )})
+                    }
+                    
 
             </div>
         </>

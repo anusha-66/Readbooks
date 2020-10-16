@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FaMagic } from 'react-icons/fa';
-
-const WishList = () => {
+type typeWishList = {
+  books:Array<any>,
+  removeFromWishList:any
+}
+const WishList = (props:typeWishList) => {
     
     return (
         <>
@@ -11,10 +14,14 @@ const WishList = () => {
               <span>Wish List</span>
             </div>
           </div>
-        <div className="side-menu">
-            <li>book 1</li>
-            <li>book 2</li>
-            <li>book 3</li>
+        <div className="wish-book-list">
+          {props.books.map(book=>{
+            return   <div> {book.title}
+            <button className="book__searchbtn" onClick={()=>{props.removeFromWishList(book.id)}}>Remove from Wish list</button>
+                                
+            </div>
+          })}
+           
         </div>
         </>
     );

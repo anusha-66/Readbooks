@@ -9,7 +9,12 @@ export async function getBooksByType(type: string) {
             }
         });
 
-        const volumeInfo = bookInfo &&  bookInfo.items &&bookInfo.items.map((item: any) => item.volumeInfo);
+        console.log(bookInfo);
+        const volumeInfo = bookInfo &&  bookInfo.items &&bookInfo.items.map((item: any) => {
+            const bookDetails =item.volumeInfo;
+            bookDetails.id=item.id;
+            return bookDetails;
+        });
         return volumeInfo;
     } catch(exception) {
         return [];

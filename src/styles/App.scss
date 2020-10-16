@@ -44,7 +44,7 @@ label{
 .hamburger{
   align-content: flex-end;
   flex-grow: 6;
-  display: none;
+  display:none;
 }
 
 .hamburger:hover{
@@ -247,7 +247,7 @@ label{
 
 .nav-wishlist {
   align-self: center;
-  flex-basis: 100%;
+  // flex-basis: 100%;
   margin: 10px 50px;
   padding: 6px 15px;
   height: 80px;
@@ -298,7 +298,10 @@ label{
   vertical-align: text-bottom
 }
 
-
+.wish-book-list
+{
+  color:white;
+}
 
 
 

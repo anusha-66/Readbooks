@@ -1,37 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import SearchResults from "../search-results/SearchResults";
-import { getBooksByType } from "./book-search.service";
+
+type booksProps ={
+    books:Array<any>,
+    bookType:string,
+    updateBookType:any,
+    updateBookTypeToSearch :any,
+    addToWishList:any,
+    wishList:Array<string>
 
 
-const BookSearch = () => {
-    const [bookType, updateBookType] = useState("");
-    const [bookTypeToSearch, updateBookTypeToSearch] = useState("");
-    const [allAvailableBooks, setAllAvailableBooks] = useState<any>([]);
-    async function requestBooks() {
-        if (bookTypeToSearch) {
-            const allBooks = await getBooksByType(bookTypeToSearch);
-            setAllAvailableBooks(allBooks);
-        }
-    }
+}
 
-    useEffect(() => {
-        async function getAllBooks() {
-            await requestBooks();
-        }
-        getAllBooks();
-    }, [bookTypeToSearch]);
+const BookSearch = (props:booksProps) => {
+    
 
     // const volumeInfo = allAvailableBooks &&  allAvailableBooks.items &&allAvailableBooks.items.map((item: any) => item.volumeInfo);
-    console.log(allAvailableBooks, "allavailablebooks");
+   // console.log(allAvailableBooks, "allavailablebooks");
 
-    const ComponentProps = {
-        allAvailableBooks: allAvailableBooks
-    }
+   // const ComponentProps = {
+     //   allAvailableBooks: allAvailableBooks
+    //}
 
     const onChange = (e:any) => {
-        updateBookType(e.target.value);
-        updateBookTypeToSearch(bookType);
+        props.updateBookType(e.target.value);
+        props.updateBookTypeToSearch(props.bookType);
     }
     return (
         <>
@@ -40,9 +34,9 @@ const BookSearch = () => {
                     <div className="search">
                         <form
                             onSubmit={(e) => {
-                                debugger;
+                                
                                 e.preventDefault();
-                                updateBookTypeToSearch(bookType)
+                                props.updateBookTypeToSearch(props.bookType)
                             }}
                         >
                             <input
@@ -50,7 +44,7 @@ const BookSearch = () => {
                                 autoFocus
                                 name="gsearch"
                                 type="search"
-                                value={bookType}
+                                value={props.bookType}
                                 placeholder="Search for books to add to your reading list and press Enter"
                                 // onChange={e => updateBookType(e.target.value)}
                                 onChange={onChange}
@@ -80,7 +74,7 @@ const BookSearch = () => {
                 </div>
             </div>
             <div>
-            {allAvailableBooks && <SearchResults {...ComponentProps}/>}
+            {props.books && <SearchResults allAvailableBooks={props.books} addToWishList={props.addToWishList} wishList={props.wishList}/>}
             </div>
             
             {/* {allAvailableBooks && (<div className="searchResults">
