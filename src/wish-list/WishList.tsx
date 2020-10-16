@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaMagic } from 'react-icons/fa';
+import { FaMagic, FaTrashAlt } from 'react-icons/fa';
 type typeWishList = {
   books:Array<any>,
   removeFromWishList:any
@@ -15,10 +15,12 @@ const WishList = (props:typeWishList) => {
             </div>
           </div>
         <div className="wish-book-list">
-          {props.books.map(book=>{
-            return   <div> {book.title}
-            <button className="book__searchbtn" onClick={()=>{props.removeFromWishList(book.id)}}>Remove from Wish list</button>
-                                
+          {props && props.books && props.books.map(book=>{
+            return   <div className="wishlist_each_item">
+              {book.title && <div className="wishlist_title"> {book.title} </div>}
+            <button className="wishlist__searchbtn" onClick={()=>{props.removeFromWishList(book.id)}}>
+                 <FaTrashAlt/> 
+            </button>              
             </div>
           })}
            

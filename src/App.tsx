@@ -47,7 +47,7 @@ const removeFromWishList = (id:string) => {
       </div>
       <div className="wishList">
           <WishList 
-          books={allAvailableBooks.filter((item:any)=>wishList.includes(item.id))}
+          books={allAvailableBooks && allAvailableBooks.filter((item:any)=>wishList.includes(item.id))}
           removeFromWishList={removeFromWishList}
           />
         </div>

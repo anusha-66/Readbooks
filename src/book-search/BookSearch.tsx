@@ -45,7 +45,7 @@ const BookSearch = (props:booksProps) => {
                                 name="gsearch"
                                 type="search"
                                 value={props.bookType}
-                                placeholder="Search for books to add to your reading list and press Enter"
+                                placeholder="Search for books"
                                 // onChange={e => updateBookType(e.target.value)}
                                 onChange={onChange}
                             />
@@ -73,7 +73,7 @@ const BookSearch = (props:booksProps) => {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="searchContent">
             {props.books && <SearchResults allAvailableBooks={props.books} addToWishList={props.addToWishList} wishList={props.wishList}/>}
             </div>
             
