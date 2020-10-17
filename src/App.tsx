@@ -22,10 +22,11 @@ function App() {
     }
 }
 const addToWishList = (id:string) =>{
-  updateWishList([...wishList,id]);
+  const bookToAdd = allAvailableBooks.filter((book:any)=>book.id===id)
+  updateWishList([...wishList,...bookToAdd]);
 }
 const removeFromWishList = (id:string) => {
-  updateWishList(wishList.filter((bookId:string)=>bookId!==id));
+  updateWishList(wishList.filter((book:any)=>book.id!==id));
 }
 
   return (
@@ -47,7 +48,7 @@ const removeFromWishList = (id:string) => {
       </div>
       <div className="wishList">
           <WishList 
-          books={allAvailableBooks && allAvailableBooks.filter((item:any)=>wishList.includes(item.id))}
+          books={wishList}
           removeFromWishList={removeFromWishList}
           />
         </div>

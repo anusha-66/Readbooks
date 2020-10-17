@@ -16,7 +16,7 @@ const SearchResults = (props: searchResult) => {
                 {props && props.allAvailableBooks &&
                     props.allAvailableBooks.length > 0 &&
                     props.allAvailableBooks.map((books: any) => {
-                        const isAvailableInwishList = props.wishList.includes(books.id);
+                        const isAvailableInwishList = props.wishList.filter((book:any) => book.id===books.id).length>0;
                         return (<div className="books">
                             <div className="books__img">
                             {books && books.imageLinks && books.imageLinks.smallThumbnail &&

@@ -55,20 +55,13 @@ const BookSearch = (props:booksProps) => {
                         </form>
 
                         {/* placeholder code */}
-                        {/* {!bookType && (
+                        {!(props.bookType) && (
                             <div className="empty">
                                 <p>
-                                    Try searching for a topic, for example
-                                        <a onClick={() => {
-                                        updateBookType("Javascript");
-                                    }}
-                                    >
-                                        {" "}
-                                            "Javascript"
-                                        </a>
+                                    Try searching for a topic
                                 </p>
                             </div>
-                        )} */}
+                        )}
 
                     </div>
                 </div>
